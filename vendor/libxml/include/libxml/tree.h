@@ -503,8 +503,9 @@ struct _xmlNode {
     struct _xmlAttr *properties;/* properties list */
     xmlNs           *nsDef;     /* namespace definitions on this node */
     void            *psvi;	/* for type/PSVI information */
-    unsigned short   line;	/* line number */
+    unsigned short   line16;	/* line number - cut to 2 byte*/
     unsigned short   extra;	/* extra data for XPath/XSLT */
+    unsigned int   line;	/* line number */
 };
 
 /**
