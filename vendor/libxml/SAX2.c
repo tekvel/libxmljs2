@@ -1623,9 +1623,11 @@ xmlSAX2StartElement(void *ctx, const xmlChar *fullname, const xmlChar **atts)
     if (ctxt->linenumbers) {
 	if (ctxt->input != NULL) {
 	    if (ctxt->input->line < 65535)
-		ret->line = (short) ctxt->input->line;
+		ret->line16 = (short) ctxt->input->line;
 	    else
-	        ret->line = 65535;
+	        ret->line16 = 65535;
+
+	    ret->line = ctxt->input->line;
 	}
     }
 
@@ -1887,12 +1889,14 @@ skip:
     if (ctxt->linenumbers) {
 	if (ctxt->input != NULL) {
 	    if (ctxt->input->line < 65535)
-		ret->line = (short) ctxt->input->line;
+		ret->line16 = (short) ctxt->input->line;
 	    else {
-	        ret->line = 65535;
+	        ret->line16 = 65535;
 		if (ctxt->options & XML_PARSE_BIG_LINES)
 		    ret->psvi = (void *) (ptrdiff_t) ctxt->input->line;
 	    }
+
+	     ret->line = ctxt->input->line;
 	}
     }
 
@@ -2267,9 +2271,11 @@ xmlSAX2StartElementNs(void *ctx,
     if (ctxt->linenumbers) {
 	if (ctxt->input != NULL) {
 	    if (ctxt->input->line < 65535)
-		ret->line = (short) ctxt->input->line;
+		ret->line16 = (short) ctxt->input->line;
 	    else
-	        ret->line = 65535;
+	        ret->line16 = 65535;
+
+	    ret->line = ctxt->input->line;
 	}
     }
 
@@ -2689,9 +2695,11 @@ xmlSAX2ProcessingInstruction(void *ctx, const xmlChar *target,
     if (ctxt->linenumbers) {
 	if (ctxt->input != NULL) {
 	    if (ctxt->input->line < 65535)
-		ret->line = (short) ctxt->input->line;
+		ret->line16 = (short) ctxt->input->line;
 	    else
-	        ret->line = 65535;
+	        ret->line16 = 65535;
+
+	    ret->line = ctxt->input->line;
 	}
     }
     if (ctxt->inSubset == 1) {
@@ -2749,9 +2757,11 @@ xmlSAX2Comment(void *ctx, const xmlChar *value)
     if (ctxt->linenumbers) {
 	if (ctxt->input != NULL) {
 	    if (ctxt->input->line < 65535)
-		ret->line = (short) ctxt->input->line;
+		ret->line16 = (short) ctxt->input->line;
 	    else
-	        ret->line = 65535;
+	        ret->line16 = 65535;
+
+	    ret->line = ctxt->input->line;
 	}
     }
 
